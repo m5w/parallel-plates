@@ -1,0 +1,8 @@
+*.pyc
+*.swp
+
+/CMakeCache.txt
+/CMakeFiles/
+/Makefile
+/ParallelPlates
+/cmake_install.cmake
