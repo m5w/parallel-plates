@@ -27,6 +27,6 @@ public:
 };
 }
 
-template <unsigned long long y, typename T> T pow(const T &x) {
+template <unsigned long long y, typename T> inline T pow(const T &x) {
   return Pow<y, T>::pow(x);
 }
