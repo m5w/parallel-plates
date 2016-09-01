@@ -32,29 +32,30 @@ int main(int argc, char **argv) {
                            N_Y_2 = 1ull << std::stoull(argv[7]);
   const long double DELTA_X_1 = LENGTH / N_X_1, DELTA_Y_1 = WIDTH / N_Y_1,
                     DELTA_X_2 = LENGTH / N_X_2, DELTA_Y_2 = WIDTH / N_Y_2;
-  const long double DELTA = DELTA_X_1 * DELTA_Y_1 * DELTA_X_2 * DELTA_Y_2;
+  const long double NUMERATOR =
+      HEIGHT * DELTA_X_1 * DELTA_Y_1 * DELTA_X_2 * DELTA_Y_2;
   long double force_z = 0.0l;
 
   long double x_1 = 0.0l;
 
-  for (unsigned long long n_x_1 = N_X_1; n_x_1 != 0ull;
-       --n_x_1, x_1 += DELTA_X_1) {
+  for (unsigned long long n_x_1 = 0ull; n_x_1 != N_X_1;
+       ++n_x_1, x_1 = DELTA_X_1 * n_x_1) {
     long double y_1 = 0.0l;
 
-    for (unsigned long long n_y_1 = N_Y_1; n_y_1 != 0ull;
-         --n_y_1, y_1 += DELTA_Y_1) {
+    for (unsigned long long n_y_1 = 0ull; n_y_1 != N_Y_1;
+         ++n_y_1, y_1 = DELTA_Y_1 * n_y_1) {
       long double x_2 = 0.0l;
 
-      for (unsigned long long n_x_2 = N_X_2; n_x_2 != 0ull;
-           --n_x_2, x_2 += DELTA_X_2) {
+      for (unsigned long long n_x_2 = 0ull; n_x_2 != N_X_2;
+           ++n_x_2, x_2 = DELTA_X_2 * n_x_2) {
         long double y_2 = 0.0l;
 
-        for (unsigned long long n_y_2 = N_Y_2; n_y_2 != 0ull;
-             --n_y_2, y_2 += DELTA_Y_2) {
-          force_z -= HEIGHT * DELTA *
-                     std::pow(pow<2ull>(x_2 - x_1) + pow<2ull>(y_2 - y_1) +
-                                  HEIGHT_SQUARED,
-                              -1.5l);
+        for (unsigned long long n_y_2 = 0ull; n_y_2 != N_Y_2;
+             ++n_y_2, y_2 = DELTA_Y_2 * n_y_2) {
+          force_z -=
+              NUMERATOR * std::pow(pow<2ull>(x_2 - x_1) + pow<2ull>(y_2 - y_1) +
+                                       HEIGHT_SQUARED,
+                                   -1.5l);
         }
       }
     }
