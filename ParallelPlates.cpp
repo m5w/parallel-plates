@@ -61,5 +61,5 @@ int main(int argc, char **argv) {
     }
   }
 
-  std::cout << force_z << " · C\n";
+  std::cout << force_z << '\n';
 }
