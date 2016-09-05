@@ -53,7 +53,7 @@ int main(int argc, char **argv) {
         for (unsigned long long n_y_2 = 0ull; n_y_2 != N_Y_2;
              ++n_y_2, y_2 = DELTA_Y_2 * n_y_2) {
           force_z -=
-              NUMERATOR * std::pow(pow<2ull>(x_2 - x_1) + pow<2ull>(y_2 - y_1) +
+              NUMERATOR * std::pow(pow<2ull>(x_1 - x_2) + pow<2ull>(y_1 - y_2) +
                                        HEIGHT_SQUARED,
                                    -1.5l);
         }
